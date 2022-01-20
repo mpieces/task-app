@@ -14,6 +14,8 @@ const Title = styled.h3`
 const TaskList = styled.div`
   padding: 8px;
   background-color: ${props => (props.isDraggingOver ? 'skyblue' : 'white')};
+
+  display: flex;
   `;
 
 export default class Column extends React.Component {
@@ -21,7 +23,8 @@ export default class Column extends React.Component {
     return (
       <Container>
         <Title>{this.props.column.title}</Title>
-        <Droppable droppableId={this.props.column.id}>
+        {/* Dropable has optional prop called direction (default is vertical) */}
+        <Droppable droppableId={this.props.column.id} direction="horizontal">
           {(provided, snapshot) => (
           <TaskList
             ref={provided.innerRef}
